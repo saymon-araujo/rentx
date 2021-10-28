@@ -10,25 +10,33 @@ import {
   Content,
   Footer,
 } from "./styles";
+import { StatusBar } from "react-native";
 import { useTheme } from "styled-components";
+import { useNavigation } from "@react-navigation/native";
 
 import { BackButton } from "../../components/BackButton";
+import { Button } from "../../components/Button";
+import { Calendar } from "../../components/Calendar";
 
 import ArrowLeftSvg from "../../assets/arrow.svg";
-import { StatusBar } from "react-native";
-import { Button } from "../../components/Button";
 
 export function Schedule() {
   const theme = useTheme();
+  const navigation = useNavigation();
+
+  function handleNavigate() {
+    navigation.navigate("ScheduleDetails");
+  }
   return (
     <Container>
       <Header>
         <StatusBar
-          barStyle="light-content"
           translucent
+          barStyle="light-content"
           backgroundColor="transparent"
         />
         <BackButton onPress={() => {}} color={theme.colors.shape} />
+
         <Title>
           Escolha uma {"\n"}
           data de início e {"\n"}
@@ -50,10 +58,12 @@ export function Schedule() {
         </RentalPeriod>
       </Header>
 
-      <Content></Content>
+      <Content>
+        <Calendar />
+      </Content>
 
       <Footer>
-        <Button title="Confirmar" />
+        <Button title="Confirmar" onPress={handleNavigate} />
       </Footer>
     </Container>
   );

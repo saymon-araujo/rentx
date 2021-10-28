@@ -10,7 +10,6 @@ interface DateValueProps{
 export const Container = styled.View`
   flex: 1;
   background-color:${({ theme }) => theme.colors.background_secondary};
-
 `;
 
 export const Header = styled.View`
@@ -22,7 +21,7 @@ export const Header = styled.View`
   justify-content:center;
   padding:25px;
 
-  padding-top:${getStatusBarHeight() + 30 }px
+  padding-top:${getStatusBarHeight() + 30}px
 `;
 
 export const Title = styled.Text`
@@ -64,7 +63,6 @@ export const DateValue = styled.Text<DateValueProps>`
     border-bottom-color: ${theme.colors.text};
     padding-bottom: 5px;
   `};
-
 `;
 
 export const Content = styled.ScrollView.attrs({
@@ -75,7 +73,6 @@ export const Content = styled.ScrollView.attrs({
 })``;
 
 export const Footer = styled.View`
-
   padding:24px;
 `;
 
