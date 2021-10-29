@@ -10,9 +10,9 @@ import {
   Content,
   Footer,
 } from "./styles";
-import { StatusBar } from "react-native";
+import { StatusBar, Alert } from "react-native";
 import { useTheme } from "styled-components";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 
 import { BackButton } from "../../components/BackButton";
 import { Button } from "../../components/Button";
@@ -26,17 +26,24 @@ import {
 import { format } from "date-fns";
 
 import ArrowLeftSvg from "../../assets/arrow.svg";
+import { getPlatformDate } from "../../utils/getPlataformDate";
+import { CarDTO } from "../../dtos/CarDTO";
+
+interface Params {
+  car: CarDTO;
+}
 
 interface RentalPeriodProps {
-  start: number;
   startFormatted: string;
-  end: number;
   endFormatted: string;
 }
 
 export function Schedule() {
+  const route = useRoute();
   const theme = useTheme();
   const navigation = useNavigation();
+
+  const { car } = route.params as Params;
 
   const [lastSelectedDate, setLastSelectedDate] = useState<DayProps>(
     {} as DayProps
@@ -49,7 +56,10 @@ export function Schedule() {
   );
 
   function handleNavigate() {
-    navigation.navigate("ScheduleDetails");
+    navigation.navigate("ScheduleDetails", {
+      car,
+      dates: Object.keys(markedDate),
+    });
   }
   function handleGoBack() {
     navigation.goBack();
@@ -71,8 +81,6 @@ export function Schedule() {
     const endDate = Object.keys(interval)[Object.keys(interval).length - 1];
 
     setRentalPeriod({
-      start: start.timestamp,
-      end: end.timestamp,
       startFormatted: format(
         getPlatformDate(new Date(firstDate)),
         "dd/MM/yyyy"
@@ -100,14 +108,18 @@ export function Schedule() {
         <RentalPeriod>
           <DateInfo>
             <DateTitle>DE</DateTitle>
-            <DateValue selected={false}></DateValue>
+            <DateValue selected={!!rentalPeriod.startFormatted}>
+              {rentalPeriod.startFormatted}
+            </DateValue>
           </DateInfo>
 
           <ArrowLeftSvg />
 
           <DateInfo>
             <DateTitle>ATÉ</DateTitle>
-            <DateValue selected={false}>18/06/2021</DateValue>
+            <DateValue selected={!!rentalPeriod.endFormatted}>
+              {rentalPeriod.endFormatted}
+            </DateValue>
           </DateInfo>
         </RentalPeriod>
       </Header>
@@ -117,7 +129,11 @@ export function Schedule() {
       </Content>
 
       <Footer>
-        <Button title="Confirmar" onPress={handleNavigate} />
+        <Button
+          title="Confirmar"
+          onPress={handleNavigate}
+          enabled={!!rentalPeriod.startFormatted}
+        />
       </Footer>
     </Container>
   );

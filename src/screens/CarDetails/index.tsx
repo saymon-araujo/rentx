@@ -22,7 +22,7 @@ import { getAcessoryIcon } from "../../utils/getAcessoryIcon";
 
 import { BackButton } from "../../components/BackButton";
 import { ImageSlider } from "../../components/ImageSlider";
-import { Accessory } from "../../components/Acessory";
+import { Accessory } from "../../components/Accessory";
 import { Button } from "../../components/Button";
 import { CarDTO } from "../../dtos/CarDTO";
 
@@ -37,7 +37,7 @@ export function CarDetails() {
   const { car } = route.params as Params;
 
   function handleNavigate() {
-    navigation.navigate("Schedule");
+    navigation.navigate("Schedule", { car });
   }
 
   function handleGoBack() {
