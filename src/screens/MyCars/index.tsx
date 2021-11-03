@@ -25,7 +25,7 @@ import { CarDTO } from "../../dtos/CarDTO";
 
 import api from "../../services/api";
 import { Car } from "../../components/Car";
-import { Load } from "../../components/Load";
+import { LoadAnimated } from "../../components/LoadAnimated";
 
 interface CarProps {
   id: string;
@@ -74,7 +74,7 @@ export function MyCars() {
         <Subtitle>Conforto, segurança e praticidade</Subtitle>
       </Header>
       {loading ? (
-        <Load />
+        <LoadAnimated />
       ) : (
         <Content>
           <Appointments>
