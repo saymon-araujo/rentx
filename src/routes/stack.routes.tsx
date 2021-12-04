@@ -4,9 +4,12 @@ import { Home } from "../screens/Home";
 import { CarDetails } from "../screens/CarDetails";
 import { Schedule } from "../screens/Schedule";
 import { ScheduleDetails } from "../screens/ScheduleDetails";
-import { ScheduleSuccess } from "../screens/ScheduleSuccess";
+import { SuccessInAction } from "../screens/SuccessInAction";
 import { MyCars } from "../screens/MyCars";
 import { Splash } from "../screens/Splash";
+import { SignIn } from "../screens/SignIn";
+import { SignUpFirstStep } from "../screens/SignUp/SignUpFirstStep";
+import { SignUpSecondStep } from "../screens/SignUp/SignUpSecondStep";
 
 import { createStackNavigator } from "@react-navigation/stack";
 
@@ -14,7 +17,8 @@ const { Navigator, Screen } = createStackNavigator();
 
 export function StackRoutes() {
   return (
-    <Navigator headerMode="none" initialRouteName="Splash">
+    <Navigator headerMode="none" initialRouteName="SignIn">
+      <Screen name="SignIn" component={SignIn} />
       <Screen name="Splash" component={Splash} />
       <Screen
         name="Home"
@@ -24,8 +28,10 @@ export function StackRoutes() {
       <Screen name="CarDetails" component={CarDetails} />
       <Screen name="Schedule" component={Schedule} />
       <Screen name="ScheduleDetails" component={ScheduleDetails} />
-      <Screen name="ScheduleSuccess" component={ScheduleSuccess} />
+      <Screen name="SuccessInAction" component={SuccessInAction} />
       <Screen name="MyCars" component={MyCars} />
+      <Screen name="SignUpFirstStep" component={SignUpFirstStep} />
+      <Screen name="SignUpSecondStep" component={SignUpSecondStep} />
     </Navigator>
   );
 }

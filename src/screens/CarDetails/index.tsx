@@ -48,7 +48,6 @@ export function CarDetails() {
 
   const scrollHandler = useAnimatedScrollHandler((event) => {
     scrollY.value = event.contentOffset.y;
-    console.log(event.contentOffset.y);
   });
 
   const headerAnimationStyle = useAnimatedStyle(() => {
@@ -120,8 +119,8 @@ export function CarDetails() {
           </Description>
 
           <Rent>
-            <Period>{car.rent.period}</Period>
-            <Price>R$ {car.rent.price}</Price>
+            <Period>{car.period}</Period>
+            <Price>R$ {car.price}</Price>
           </Rent>
         </Details>
 
