@@ -64,7 +64,6 @@ export function MyCars() {
           barStyle="light-content"
           backgroundColor="transparent"
         />
-        <BackButton onPress={handleGoBack} color={theme.colors.shape} />
 
         <Title>
           Seus agendamentos, {"\n"}
