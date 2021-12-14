@@ -22,13 +22,26 @@ export function Home() {
     navigation.navigate("CarDetails", { car });
   }
   function APISearch() {
+    let isMounted = true;
     setLoading(true);
 
     api
       .get("/cars")
-      .then((response) => setCars(response.data))
-      .catch((error) => console.log(error))
-      .finally(() => setLoading(false));
+      .then((response) => {
+        if (isMounted) {
+          setCars(response.data);
+        }
+      })
+      .catch(() => {})
+      .finally(() => {
+        if (isMounted) {
+          setLoading(false);
+        }
+      });
+
+    return () => {
+      isMounted = false;
+    };
   }
 
   useEffect(() => {
