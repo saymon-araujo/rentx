@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { StatusBar } from "react-native";
+import { StatusBar, Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { RFValue } from "react-native-responsive-fontsize";
 
@@ -11,10 +11,12 @@ import Logo from "../../assets/logo.svg";
 import api from "../../services/api";
 
 import { CarDTO } from "../../dtos/CarDTO";
+import { useNetInfo } from "@react-native-community/netinfo";
 
 export function Home() {
   const [cars, setCars] = useState<CarDTO[]>([]);
   const [loading, setLoading] = useState(false);
+  const netInfo = useNetInfo();
 
   const navigation = useNavigation();
 
@@ -47,6 +49,14 @@ export function Home() {
   useEffect(() => {
     APISearch();
   }, []);
+
+  useEffect(() => {
+    if (netInfo.isInternetReachable) {
+      Alert.alert("Você está Online");
+    } else {
+      Alert.alert("Você está Offline");
+    }
+  }, [netInfo.isInternetReachable]);
   return (
     <Container>
       <StatusBar
