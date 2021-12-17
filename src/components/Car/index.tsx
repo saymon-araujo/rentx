@@ -15,17 +15,20 @@ import {
 
 import { RectButtonProps } from "react-native-gesture-handler";
 
-import { CarDTO } from "../../dtos/CarDTO";
+import { Car as ModelCar } from "../../database/model/Car";
 
 import { getAcessoryIcon } from "../../utils/getAcessoryIcon";
+import { useNetInfo } from "@react-native-community/netinfo";
 
 interface Props extends RectButtonProps {
-  data: CarDTO;
+  data: ModelCar;
   onPress: () => void;
 }
 
 export function Car({ data, onPress }: Props) {
   const MotorIcon = getAcessoryIcon(data.fuel_type);
+
+  const netinfo = useNetInfo();
 
   return (
     <Container onPress={onPress}>
@@ -36,7 +39,9 @@ export function Car({ data, onPress }: Props) {
         <About>
           <Rent>
             <Period>{data.period}</Period>
-            <Price>{`R$ ${data.price}`}</Price>
+            <Price>{`R$ ${
+              netinfo.isInternetReachable == true ? data.price : "..."
+            }`}</Price>
           </Rent>
 
           <Type>
