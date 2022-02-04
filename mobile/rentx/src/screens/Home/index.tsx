@@ -55,9 +55,7 @@ export function Home() {
     await synchronize({
       database,
       pullChanges: async ({ lastPulledAt }) => {
-        const response = await api.get(
-          `cars/sync/pull?lastPulledVersion=${lastPulledAt || 0}`
-        );
+        const response = await api.get(`cars/sync/pull?lastPulledVersion=${lastPulledAt || 0}`);
         const { changes, latestVersion } = response.data;
         return { changes, timestamp: latestVersion };
       },
@@ -80,20 +78,12 @@ export function Home() {
 
   return (
     <Container>
-      <StatusBar
-        barStyle="light-content"
-        translucent
-        backgroundColor="transparent"
-      />
+      <StatusBar barStyle="light-content" translucent backgroundColor="transparent" />
       <Header>
         <HeaderContent>
           <Logo width={RFValue(108)} height={RFValue(12)} />
 
-          {!loading ? (
-            <TotalCars>Total de {cars.length} carros</TotalCars>
-          ) : (
-            <></>
-          )}
+          {!loading ? <TotalCars>Total de {cars.length} carros</TotalCars> : <></>}
         </HeaderContent>
       </Header>
 
@@ -102,9 +92,7 @@ export function Home() {
       ) : (
         <CarList
           data={cars}
-          renderItem={({ item }) => (
-            <Car data={item} onPress={() => handleNavigate(item)} />
-          )}
+          renderItem={({ item }) => <Car data={item} onPress={() => handleNavigate(item)} />}
           keyExtractor={(item) => String(item.id)}
         />
       )}
