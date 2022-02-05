@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img alt="Banner" title="#banner" src="./src/assets/rentx-publish-assets/banner/banner.png" />
+    <img alt="Banner" title="#banner" src="./mobile/rentx/src/assets/rentx-publish-assets/banner/banner.png" />
 </h1>
 
 <h3 align="center">📱 App project for luxury car rental</h3>
@@ -24,10 +24,10 @@
 
 
 <div align="center">
- <img alt="ScreenShot1" title="#screenshot1" src="./src/assets/rentx-publish-assets/screenshots/screenshot4.png"  />&nbsp;&nbsp;&nbsp;&nbsp;
- <img alt="ScreenShot2" title="#screenshot2" src="./src/assets/rentx-publish-assets/screenshots/screenshot1.png"  />&nbsp;&nbsp;&nbsp;&nbsp;
- <img alt="ScreenShot3" title="#screenshot3" src="./src/assets/rentx-publish-assets/screenshots/screenshot2.png"  />&nbsp;&nbsp;&nbsp;&nbsp;
- <img alt="ScreenShot4" title="#screenshot4" src="./src/assets/rentx-publish-assets/screenshots/screenshot3.png"  />&nbsp;&nbsp;&nbsp;&nbsp;
+ <img alt="ScreenShot1" title="#screenshot1" src="./mobile/rentx/src/assets/rentx-publish-assets/screenshots/screenshot4.png"  />&nbsp;&nbsp;&nbsp;&nbsp;
+ <img alt="ScreenShot2" title="#screenshot2" src="./mobile/rentx/src/assets/rentx-publish-assets/screenshots/screenshot1.png"  />&nbsp;&nbsp;&nbsp;&nbsp;
+ <img alt="ScreenShot3" title="#screenshot3" src="./mobile/rentx/src/assets/rentx-publish-assets/screenshots/screenshot2.png"  />&nbsp;&nbsp;&nbsp;&nbsp;
+ <img alt="ScreenShot4" title="#screenshot4" src="./mobile/rentx/src/assets/rentx-publish-assets/screenshots/screenshot3.png"  />&nbsp;&nbsp;&nbsp;&nbsp;
 </div>
 
 
@@ -55,7 +55,7 @@
 - [x] Change user information and password
 
 <p align="center">
-  <img src="./src/assets/rentx-publish-assets/preview/preview-rentx.gif">
+  <img src="./mobile/rentx/src/assets/rentx-publish-assets/preview/preview-rentx.gif">
 </p>
 
 <br>
