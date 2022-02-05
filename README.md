@@ -20,7 +20,7 @@
 <br>
 
 # Description
-<p>This project is about an app for bussiness that rent luxury cars, it allows the user to view cars provided by the company and rent them for a period of time. This project was developed during my bootcamp at Rocketseat.</p>
+<p>This project is about an app for companies that rent luxury cars, it allows the user to view and rent the cars. This project was developed during my bootcamp at Rocketseat.</p>
 
 
 <div align="center">
