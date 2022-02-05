@@ -100,8 +100,6 @@ $ yarn android
 
 This project is under MIT license . [See it](https://github.com/saymon-araujo/rentx/blob/master/LICENSE) for more information.
 
-All the art
-
 ---
 
 Made by Saymon Araújo
