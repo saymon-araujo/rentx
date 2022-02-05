@@ -2,7 +2,7 @@
     <img alt="Banner" title="#banner" src="./mobile/rentx/src/assets/rentx-publish-assets/banner/banner.png" />
 </h1>
 
-<h3 align="center">📱 App project for luxury car rental</h3>
+<h3 align="center">Luxury Car Rental App Project</h3>
 
 <p align="center">
   <img alt="License" src="https://img.shields.io/badge/license-MIT-brightgreen">
@@ -63,28 +63,34 @@
 
 # How to use
 
-Para executar o aplicativo, você precisará ter o [ambiente de desenvolvimento](https://reactnative.dev/docs/environment-setup) _(React Native CLI)_ configurado tanto para Android quanto para iOS em sua máquina. Caso já tenha configurado o seu, basta seguir os passos:
+To run the project, you will need to have the [React Native CLI enviroment](https://reactnative.dev/docs/environment-setup) configured and [Yarn](https://classic.yarnpkg.com/en/docs/getting-started) installed. After this follow this instructions:
 
 ```bash
-# Clone esse repositório
-$ git clone https://github.com/saymon-araujo/capgemini-techinal-test
+# Clone this repository to your local machine
+$ git clone https://github.com/saymon-araujo/rentx
 
-# Navegue até a pasta do repositório
-$ cd capgemini-techinal-test
+# Navigate to the server
+$ cd rentx/backend/rentx-api/ 
 
-# Instale as dependencias
-$ npm install
-$ cd ios && pod install && cd ..
+# Install the server dependencies
+$ yarn
 
-# Execute o app (Android)
+# Start the server and leave it running
+$ yarn start
+
+# On another terminal navigate to the mobile folder
+$ cd rentx/mobile/rentx/
+
+# Install the dependencies
+$ yarn
+$ expo install
+
+# Run the app
 $ yarn android
 
-# Execute o app (iOS)
-$ yarn ios
-
 # Login
- Email: teste
- Senha: 123456
+ Email: saymonbrandon@gmail.com
+ Password: 123
 ```
 
 <br>
@@ -92,7 +98,7 @@ $ yarn ios
 
 # License
 
-This project is under MIT license . See [it](https://github.com/saymon-araujo/capgemini-techinal-test/blob/main/LICENSE) for more information.
+This project is under MIT license . [See it](https://github.com/saymon-araujo/rentx/blob/master/LICENSE) for more information.
 
 ---
 
