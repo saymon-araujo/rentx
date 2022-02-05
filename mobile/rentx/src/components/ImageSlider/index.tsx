@@ -25,11 +25,11 @@ export function ImageSlider({ imagesUrl }: Props) {
 
   return (
     <Container>
-      <ImageIndexes>
+      {/* <ImageIndexes>
         {imagesUrl.map((item, index) => (
           <Bullet active={index === imageIndex} key={String(item.id)} />
         ))}
-      </ImageIndexes>
+      </ImageIndexes> */}
 
       <FlatList
         data={imagesUrl}

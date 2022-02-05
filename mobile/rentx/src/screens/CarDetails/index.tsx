@@ -30,7 +30,7 @@ import Animated, {
   Extrapolate,
 } from "react-native-reanimated";
 
-import { getAcessoryIcon } from "../../utils/getAcessoryIcon";
+import { getAccessoryIcon } from "../../utils/getAccessoryIcon";
 
 import { BackButton } from "../../components/BackButton";
 import { ImageSlider } from "../../components/ImageSlider";
@@ -60,12 +60,7 @@ export function CarDetails() {
 
   const headerAnimationStyle = useAnimatedStyle(() => {
     return {
-      height: interpolate(
-        scrollY.value,
-        [0, 200],
-        [200, statusBarHeight + 50],
-        Extrapolate.CLAMP
-      ),
+      height: interpolate(scrollY.value, [0, 200], [200, statusBarHeight + 50], Extrapolate.CLAMP),
     };
   });
 
@@ -90,6 +85,7 @@ export function CarDetails() {
       const response = await api.get(`/cars/${car.id}`);
 
       setCarUpdated(response.data);
+      console.log(response.data.photos);
     }
     if (netinfo.isInternetReachable === true) {
       fetchCarUpdated();
@@ -98,11 +94,7 @@ export function CarDetails() {
 
   return (
     <Container>
-      <StatusBar
-        barStyle="dark-content"
-        translucent
-        backgroundColor="transparent"
-      />
+      <StatusBar barStyle="dark-content" translucent backgroundColor="transparent" />
 
       <Animated.View
         style={[
@@ -117,13 +109,7 @@ export function CarDetails() {
 
         <Animated.View style={sliderCarsAnimationStyle}>
           <CarImages>
-            <ImageSlider
-              imagesUrl={
-                !!carUpdated.photos
-                  ? carUpdated.photos
-                  : [{ id: car.thumbnail, photos: car.thumbnail }]
-              }
-            />
+            <ImageSlider imagesUrl={[{ id: car.thumbnail, photos: car.thumbnail }]} />
           </CarImages>
         </Animated.View>
       </Animated.View>
@@ -145,9 +131,7 @@ export function CarDetails() {
 
           <Rent>
             <Period>{car.period}</Period>
-            <Price>
-              R$ {netinfo.isInternetReachable == true ? car.price : "..."}
-            </Price>
+            <Price>R$ {netinfo.isInternetReachable == true ? car.price : "..."}</Price>
           </Rent>
         </Details>
 
@@ -156,7 +140,7 @@ export function CarDetails() {
             {carUpdated.accessories.map((accessory) => (
               <Accessory
                 name={accessory.name}
-                icon={getAcessoryIcon(accessory.type)}
+                icon={getAccessoryIcon(accessory.type)}
                 key={accessory.type}
               />
             ))}

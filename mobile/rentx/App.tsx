@@ -5,11 +5,7 @@ import { ThemeProvider } from "styled-components";
 import { AppProvider } from "./src/hooks";
 import { Routes } from "./src/routes/index";
 
-import {
-  useFonts,
-  Inter_400Regular,
-  Inter_500Medium,
-} from "@expo-google-fonts/inter";
+import { useFonts, Inter_400Regular, Inter_500Medium } from "@expo-google-fonts/inter";
 
 import {
   Archivo_400Regular,
@@ -30,6 +26,8 @@ export default function App() {
   if (!fontLoaded) {
     return <AppLoading />;
   }
+
+  console.disableYellowBox = true;
 
   return (
     <ThemeProvider theme={theme}>

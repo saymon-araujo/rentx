@@ -36,7 +36,7 @@ import { ImageSlider } from "../../components/ImageSlider";
 import { Accessory } from "../../components/Accessory";
 import { Button } from "../../components/Button";
 
-import { getAcessoryIcon } from "../../utils/getAcessoryIcon";
+import { getAccessoryIcon } from "../../utils/getAccessoryIcon";
 import { getPlatformDate } from "../../utils/getPlataformDate";
 
 import { CarDTO } from "../../dtos/CarDTO";
@@ -59,9 +59,7 @@ export function ScheduleDetails() {
 
   const [loading, setLoading] = useState(false);
 
-  const [rentalPeriod, setRentalPeriod] = useState<RentalPeriodProps>(
-    {} as RentalPeriodProps
-  );
+  const [rentalPeriod, setRentalPeriod] = useState<RentalPeriodProps>({} as RentalPeriodProps);
 
   const { car, dates } = route.params as Params;
   const rentTotal = Number(dates.length * car.price);
@@ -69,22 +67,16 @@ export function ScheduleDetails() {
   async function SendInfoToApi() {
     setLoading(true);
 
-    await api.post(`/schedules_byuser`, {
+    await api.post(`/rentals`, {
       user_id: 1,
       car,
       startDate: format(getPlatformDate(new Date(dates[0])), "dd/MM/yyyy"),
-      endDate: format(
-        getPlatformDate(new Date(dates[dates.length - 1])),
-        "dd/MM/yyyy"
-      ),
+      endDate: format(getPlatformDate(new Date(dates[dates.length - 1])), "dd/MM/yyyy"),
     });
 
     const scheduleByCar = await api.get(`/schedules_bycars/${car.id}`);
 
-    const unavailable_dates = [
-      ...scheduleByCar.data.unavailable_dates,
-      ...dates,
-    ];
+    const unavailable_dates = [...scheduleByCar.data.unavailable_dates, ...dates];
 
     api
       .put(`/schedules_bycars/${car.id}`, {
@@ -100,6 +92,27 @@ export function ScheduleDetails() {
         Alert.alert("Não foi possível confirmar o agendamento");
       });
   }
+
+  async function handleConfirmRental() {
+    setLoading(true);
+
+    await api
+      .post("/rentals", {
+        user_id: 1,
+        car_id: car.id,
+        start_date: new Date(),
+        end_date: new Date(),
+        total: rentTotal,
+      })
+      .then(() => {
+        handleNavigate();
+      })
+      .catch(() => {
+        setLoading(false);
+        Alert.alert("Não foi possível confirmar o agendamento.");
+      });
+  }
+
   function handleNavigate() {
     navigation.navigate("SuccessInAction", {
       title: "Carro Alugado!",
@@ -114,20 +127,13 @@ export function ScheduleDetails() {
   useEffect(() => {
     setRentalPeriod({
       start: format(getPlatformDate(new Date(dates[0])), "dd/MM/yyyy"),
-      end: format(
-        getPlatformDate(new Date(dates[dates.length - 1])),
-        "dd/MM/yyyy"
-      ),
+      end: format(getPlatformDate(new Date(dates[dates.length - 1])), "dd/MM/yyyy"),
     });
   }, []);
 
   return (
     <Container>
-      <StatusBar
-        barStyle="dark-content"
-        translucent
-        backgroundColor="transparent"
-      />
+      <StatusBar barStyle="dark-content" translucent backgroundColor="transparent" />
 
       <Header>
         <BackButton onPress={handleGoBack} />
@@ -150,23 +156,21 @@ export function ScheduleDetails() {
           </Rent>
         </Details>
 
-        <Acessories>
-          {car.accessories.map((accessory) => (
-            <Accessory
-              name={accessory.name}
-              key={accessory.type}
-              icon={getAcessoryIcon(accessory.type)}
-            />
-          ))}
-        </Acessories>
+        {car.accessories && (
+          <Acessories>
+            {car.accessories.map((accessory) => (
+              <Accessory
+                name={accessory.name}
+                icon={getAccessoryIcon(accessory.type)}
+                key={accessory.type}
+              />
+            ))}
+          </Acessories>
+        )}
 
         <RentalPeriod>
           <CalendarIcon>
-            <Feather
-              name="calendar"
-              size={RFValue(24)}
-              color={theme.colors.shape}
-            />
+            <Feather name="calendar" size={RFValue(24)} color={theme.colors.shape} />
           </CalendarIcon>
 
           <DateInfo>
@@ -174,11 +178,7 @@ export function ScheduleDetails() {
             <DateValue>{rentalPeriod.start}</DateValue>
           </DateInfo>
 
-          <Feather
-            name="chevron-right"
-            size={RFValue(10)}
-            color={theme.colors.text}
-          />
+          <Feather name="chevron-right" size={RFValue(10)} color={theme.colors.text} />
 
           <DateInfo>
             <DateTitle>ATÉ</DateTitle>
@@ -199,7 +199,7 @@ export function ScheduleDetails() {
         <Button
           title="Alugar agora"
           color={theme.colors.success}
-          onPress={SendInfoToApi}
+          onPress={handleConfirmRental}
           enabled={!loading}
           loading={loading}
         />
