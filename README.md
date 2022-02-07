@@ -63,7 +63,7 @@
 
 # How to use
 
-To run the project, you will need to have the [React Native CLI enviroment](https://reactnative.dev/docs/environment-setup) configured and [Yarn](https://classic.yarnpkg.com/en/docs/getting-started) installed. After this follow this instructions:
+To run the project you will need to have the [React Native CLI enviroment](https://reactnative.dev/docs/environment-setup) configured and [Yarn](https://classic.yarnpkg.com/en/docs/getting-started) installed. After this follow these instructions:
 
 ```bash
 # Clone this repository to your local machine
